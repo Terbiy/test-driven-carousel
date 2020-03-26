@@ -13,6 +13,11 @@ module.exports = {
   env: {
     node: true,
   },
+  settings: {
+    react: {
+      version: "detect"
+    }
+  },
   rules: {
     quotes: ['error', 'single', { avoidEscape: true }],
     'comma-dangle': ['error', 'always-multiline'],

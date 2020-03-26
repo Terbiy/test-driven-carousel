@@ -5,7 +5,7 @@
  * courses, books, articles, and the like. Contact us if you are in doubt.
  * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/tbreact for more book information.
-***/
+ ***/
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -15,8 +15,7 @@ export default (Component, indexPropName) => {
   const defaultIndexPropName = `default${capitalize(indexPropName)}`;
 
   return class ComponentWithIndex extends React.PureComponent {
-    static displayName = `HasIndex(${Component.displayName ||
-      Component.name})`;
+    static displayName = `HasIndex(${Component.displayName || Component.name})`;
 
     static propTypes = {
       [indexPropName]: PropTypes.number, // (2)
@@ -28,7 +27,8 @@ export default (Component, indexPropName) => {
       [defaultIndexPropName]: 0,
     };
 
-    static getDerivedStateFromProps(props, state) { // (3)
+    static getDerivedStateFromProps(props, state) {
+      // (3)
       if (
         props[indexPropName] != null &&
         props[indexPropName] !== state.index
@@ -38,7 +38,8 @@ export default (Component, indexPropName) => {
       return null;
     }
 
-    constructor(props) { // (4)
+    constructor(props) {
+      // (4)
       super(props);
 
       this.state = {
@@ -75,10 +76,7 @@ export default (Component, indexPropName) => {
     };
 
     render() {
-      const {
-        [defaultIndexPropName]: _defaultIndexProp,
-        ...rest
-      } = this.props;
+      const { [defaultIndexPropName]: _defaultIndexProp, ...rest } = this.props;
       const indexProps = {
         [indexPropName]: this.state.index,
         [`${indexPropName}Decrement`]: this.handleDecrement,
